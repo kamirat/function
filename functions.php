@@ -67,7 +67,7 @@ function html_escape($html) {
  * @return int 消費税を含めた金額(少数以下切り捨て)
  */
 function get_tax_price($price) {
-  return floor( $price * 1.08 );
+  return (int)floor( $price * 1.08 );
 }
 
 
@@ -105,6 +105,7 @@ function get_tax_price($price) {
  * @return bool ファイル書き込みに成功した時 true, 失敗した時 false
  */
 function write_log($message, $level) {
+
 }
 
 /**
@@ -143,6 +144,15 @@ function write_log($message, $level) {
  * @return array 指定されたカラムの値の配列
  */
 function array_column(array $data, $column) {
+  $arryResult = array();
+  foreach($data as $target){
+    foreach($target as $key => $value){
+      if($key == $column){ // 指定のカラムと一致
+        $arryResult[] = $value; // 新しく配列に
+      }
+    }
+  }
+  return $arryResult;
 }
 
 
