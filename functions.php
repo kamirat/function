@@ -105,7 +105,17 @@ function get_tax_price($price) {
  * @return bool ファイル書き込みに成功した時 true, 失敗した時 false
  */
 function write_log($message, $level) {
-
+  $time = date("Y-m-d H:i:s: ");
+  $data = $time . $message . "\n";
+  $fp = fopen("$level.log", "a");
+  if($fp == true){
+  fwrite($fp, $data);
+  fclose($fp);
+  return true;
+  }
+  else {
+    return false;
+  }
 }
 
 /**
