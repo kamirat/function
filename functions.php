@@ -48,7 +48,11 @@ function is_future_date($target_date) {
  * @return string エスケープされた HTML 文字列
  */
 function html_escape($html) {
+  $kigou = array('&', '"', "'", '<', '>');
+  $escape = array('&amp;', '&quot;', '&apos;', '&lt;', '&gt;');
+  return str_replace($kigou, $escape, $html);
 }
+
 
 /**
  * 指定された金額に消費税を加算して返す
@@ -63,7 +67,11 @@ function html_escape($html) {
  * @return int 消費税を含めた金額(少数以下切り捨て)
  */
 function get_tax_price($price) {
+  return floor( $price * 1.08 );
 }
+
+
+
 
 /**
  * ログメッセージをファイルに書き込む
